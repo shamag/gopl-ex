@@ -27,10 +27,10 @@ func isNan(params ...float64) bool {
 	return false
 }
 func main() {
-	http.HandleFunc("/", svg)
+	http.HandleFunc("/", svgGenerate)
 	http.ListenAndServe(":8080", nil)
 }
-func svg(rw http.ResponseWriter, r *http.Request) {
+func svgGenerate(rw http.ResponseWriter, r *http.Request) {
 	rw.Header().Set("Content-Type", "image/svg+xml")
 	fmt.Fprintf(rw, "<svg xmlns='http://www.w3.org/2000/svg' "+
 		"style='stroke: grey; fill: white; stroke-width: 0.7' "+
