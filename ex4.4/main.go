@@ -6,17 +6,14 @@ func swap(a, b *int) {
 	*a, *b = *b, *a
 }
 func getPos(arr []int, index int) int {
-	if index >= len(arr) {
-		return index - len(arr)
-	}
 
-	return index
+	return index % len(arr)
 }
 func rotate(slice *[]int, n int) {
 	tmp := make([]int, len(*slice))
 	for index := 0; index < len(*slice); index++ {
 		jndex := index + n
-		tmp[getPos(*slice, jndex)] = (*slice)[index]
+		tmp[getPos(*slice, jndex)] = (*slice)[getPos(*slice, index)]
 	}
 	*slice = tmp
 }
@@ -29,6 +26,6 @@ func reverse(arr *[5]int) {
 func main() {
 	var b = [...]int{10, 1, 2, 3, 4, 5}
 	slice := b[:]
-	rotate(&slice, 3)
+	rotate(&slice, 12)
 	fmt.Println(slice)
 }
