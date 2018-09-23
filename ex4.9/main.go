@@ -13,15 +13,16 @@ func main() {
 		log.Fatal(err)
 	}
 	defer file.Close()
-	var count int
+	count := make(map[string]int)
 	scanner := bufio.NewScanner(file)
 	scanner.Split(bufio.ScanWords)
 	for scanner.Scan() {
-		count++
+		text := scanner.Text()
+		count[text]++
 	}
 
 	if err := scanner.Err(); err != nil {
 		log.Fatal(err)
 	}
-	fmt.Println(count)
+	fmt.Printf("%#v", count)
 }
